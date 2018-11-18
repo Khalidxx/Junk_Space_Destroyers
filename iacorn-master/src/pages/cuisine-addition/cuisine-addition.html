@@ -1,0 +1,51 @@
+<ion-content padding>
+  <div class="main">
+
+    <ion-grid *ngFor="let addition of cuisine.additions; index as i">
+      <ion-row>
+        <ion-col>
+          <h4>{{addition.name}}</h4>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col *ngFor="let option of addition.options">
+          <button (click)="switchOption(i,option.id)" ion-button [id]="option.id == additionsModal[i].choosedId? 'selected':'normal'">{{option.name}}</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row class="addOrSub" align-items-center>
+        <ion-col col-auto class="title">份数: </ion-col>
+        <ion-col col-auto class="remove-icon">
+          <ion-icon *ngIf="quantity>0" (click)="subQuantity()" name="ios-remove-circle-outline">
+          </ion-icon>
+        </ion-col>
+        <ion-col col-auto class="number">
+          {{quantity}}
+        </ion-col>
+        <ion-col col-auto class="add-icon">
+          <ion-icon (click)="addQuantity()" name="md-add-circle">
+          </ion-icon>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+    <ion-grid class="bottom">
+      <ion-row justify-content-center>
+        <ion-col col-auto>
+          <button (click)="hideModal()" class="cancelButton" ion-button>
+            取消
+          </button>
+        </ion-col>
+        <ion-col col-auto>
+          <button [disabled]="quantity==0" (click)="addToCart()" class="confirmButton" ion-button>
+            确认
+          </button>
+        </ion-col>
+
+
+      </ion-row>
+    </ion-grid>
+
+  </div>
+</ion-content>

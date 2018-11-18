@@ -1,0 +1,52 @@
+<div>
+  <ion-grid class="header" no-padding>
+    <ion-row align-items-center>
+      <ion-col>
+        <h2>
+          {{store.merchant.rate}}
+        </h2>
+        <p>
+          {{'COMPREHENSIVE_EVALUATION'|translate}}
+        </p>
+      </ion-col>
+      <ion-col>
+        <star-rating [rate]="store.merchant.rate"></star-rating>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list no-lines>
+    <ion-item *ngFor=" let consumerComment of store.ConsumerCommentList ">
+      <ion-img class="consumerIcon " item-start [src]="consumerComment.userIconLink " cache></ion-img>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col class="accountNumber ">{{consumerComment.consumerAccountNumber}}</ion-col>
+          <ion-col class="date ">{{consumerComment.date|date}}</ion-col>
+        </ion-row>
+        <ion-row class="consumerRate" *ngIf="consumerComment.rate">
+          <ion-col col-auto>
+            <star-rating rate="consumerComment.rate"></star-rating>
+          </ion-col>
+          <ion-col col-auto>
+            <p>{{consumerComment.rate.toFixed(1)}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{consumerComment.content}}
+          </ion-col>
+        </ion-row>
+        <ion-row padding-left margin-bottom class="merchantReply " *ngIf="consumerComment.merchantReply ">
+          <ion-col>
+            {{'MERCHANT_REPLY'|translate}}: {{consumerComment.merchantReply}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-img class="consumerImage " src=[consumerComment.imageLink]></ion-img>
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event) ">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</div>

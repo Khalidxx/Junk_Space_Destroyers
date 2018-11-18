@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ store.merchant.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content scroll="false">
+  <div class="banner">
+    <img [src]="store.MerchantDetail.profileImageLink" />
+  </div>
+  <div class="basicInfoBackground" [ngSwitch]="store.MerchantDetail.isWorking">
+    <div class="workingTime" *ngSwitchCase="true">
+      {{ "WORKING" | translate }}
+      <ion-icon name="md-time"></ion-icon>
+      {{ store.MerchantDetail.workingTime.start | moment }} -
+      {{ store.MerchantDetail.workingTime.end | moment }}
+    </div>
+    <div class="workingTimeRest" *ngSwitchCase="false">
+      {{ "REST" | translate }}
+      <ion-icon name="md-time"></ion-icon>
+      {{ store.MerchantDetail.workingTime.start | moment }} -
+      {{ store.MerchantDetail.workingTime.end | moment }}
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="merchantTabs">
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col *ngFor="let tab of tabs">
+            <button
+              color="light"
+              mode="ios"
+              ion-button
+              (click)="changeTabNumber(tab.number)"
+              [id]="tab.number == tabNumber ? 'choosed-tab' : 'normal-tab'"
+            >
+              {{ tab.name }}
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div [ngSwitch]="tabNumber">
+      <merchant-menu *ngSwitchCase="0"> </merchant-menu>
+      <merchant-review *ngSwitchCase="1"> </merchant-review>
+      <merchant-info *ngSwitchCase="2"> </merchant-info>
+    </div>
+  </div>
+</ion-content>
+<ion-menu
+  *ngIf="tabNumber == 0"
+  [content]="categoryList"
+  side="right"
+  type="overlay"
+  swipeEnabled
+  class="categoryMenu"
+>
+  <ion-list no-lines>
+    <button
+      ion-item
+      *ngFor="let category of store.CategoryList; let i = index"
+      detail-none
+      (click)="scrollTo(i)"
+    >
+      {{ category.name }}
+    </button>
+  </ion-list>
+</ion-menu>
+<ion-nav #categoryList></ion-nav>
+<button
+  *ngIf="tabNumber == 0"
+  ion-button
+  menuToggle
+  icon-only
+  class="menu-toggle"
+>
+  <ion-icon name="ios-arrow-back"></ion-icon>
+</button>
+<div class="cart" *ngIf="tabNumber == 0">
+  <div class="icon-container" ion-button (click)="presentCartModal()">
+    <ion-icon name="cart"></ion-icon>
+  </div>
+  <div class="mainPart">
+    <h5>RM{{ cartStore.amount.toFixed(2) }}</h5>
+  </div>
+  <div class="end" [ngSwitch]="cartStore.amount != 0">
+    <button
+      (click)="goToOrderPage()"
+      ion-button
+      *ngSwitchCase="true"
+      full
+      color="primary"
+    >
+      Confirm
+    </button>
+  </div>
+</div>

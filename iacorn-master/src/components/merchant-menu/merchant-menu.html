@@ -1,0 +1,51 @@
+<div>
+  <ion-item-group
+    *ngFor="let category of merchantStore.CategoryList; let i = index"
+    text-left
+  >
+    <ion-item-divider [id]="i">{{ category.name }}</ion-item-divider>
+    <ion-item no-lines *ngFor="let cuisine of category.cuisines">
+      <!-- start -->
+      <img item-start [src]="cuisine.imageLink" />
+
+      <h2>{{ cuisine.name }}</h2>
+      <div class="price">RM {{ cuisine.basePrice.toFixed(2) }}</div>
+
+      <!-- end -->
+      <div class="end" item-end [ngSwitch]="cuisine.additions == null">
+        <ion-icon
+          *ngSwitchCase="true"
+          (click)="addCuisine(cuisine)"
+          name="md-add-circle"
+        ></ion-icon>
+        <ion-badge
+          class="option"
+          *ngSwitchCase="false"
+          (click)="presentAdditionModal(cuisine)"
+          >Option</ion-badge
+        >
+      </div>
+    </ion-item>
+  </ion-item-group>
+  <!--
+    <div class="cart">
+      <div class="icon-container" ion-button (click)="presentCartModal()">
+        <ion-icon name="cart"></ion-icon>
+      </div>
+      <div class="main">
+        <h5>RM{{ cartStore.amount.toFixed(2) }}</h5>
+      </div>
+      <div class="end" [ngSwitch]="cartStore.amount != 0">
+        <button
+          (click)="goToOrderPage()"
+          ion-button
+          *ngSwitchCase="true"
+          full
+          color="primary"
+        >
+          支付
+        </button>
+      </div>
+    </div>
+  -->
+</div>

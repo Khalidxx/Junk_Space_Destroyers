@@ -1,0 +1,11 @@
+<div>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col *ngFor="let i of rateArray" [ngSwitch]="i" col-auto>
+        <ion-icon name="star" *ngSwitchCase="1"></ion-icon>
+        <ion-icon name="star-half" *ngSwitchCase="0.5"></ion-icon>
+        <ion-icon name="star-outline" *ngSwitchCase="0"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

@@ -1,0 +1,162 @@
+page-merchant {
+  $backgroud-color: map-get($color-custom, gray3);
+  $baner-img-height: 180px;
+  $merchant-basic-info-height: 90px;
+  $cart-container-size: 60px;
+  $cart-container-background-color: color($colors, primary);
+  $cart-bar-background-color: $background-color-dark;
+  text-align: center;
+  .banner {
+    height: $baner-img-height;
+    overflow: hidden;
+    > img {
+      filter: brightness(90%);
+    }
+    z-index: -1;
+  }
+  .merchatBasicInfo {
+    height: $merchant-basic-info-height;
+    position: relative;
+    bottom: 30px;
+    z-index: 1;
+    background: white;
+    > h5 {
+      color: $heading-color;
+      padding-bottom: 5px;
+      margin-bottom: 0;
+    }
+    > p {
+      padding-top: 0;
+      margin-top: 0;
+      color: $text-color-secondary;
+      font-size: 12px;
+    }
+    ion-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 8px;
+      padding: 2px 3px;
+    }
+  }
+  .basicInfoBackground {
+    height: 110px;
+    background: $backgroud-color;
+    position: relative;
+    bottom: 128px;
+    // background: black;
+    position: relative;
+    z-index: -1;
+    .workingTime {
+      position: absolute;
+      bottom: 5px;
+      width: 100%;
+    }
+    .workingTimeRest {
+      position: absolute;
+      bottom: 5px;
+      width: 100%;
+      color: color($colors, danger);
+    }
+    ion-icon {
+      font-size: 15px;
+    }
+  }
+  .main {
+    position: relative;
+    bottom: 130px;
+    z-index: 1;
+    button {
+      background: transparent;
+      font-weight: bold;
+    }
+    #choosed-tab {
+      color: color($colors, primary);
+    }
+    #normal-tab {
+      color: black;
+    }
+  }
+  ion-menu {
+    position: fixed;
+    ion-list {
+      position: absolute;
+      top: 80px;
+    }
+  }
+  button.menu-toggle {
+    position: fixed;
+    right: 0;
+    top: 60%;
+    width: 20px;
+    z-index: 2;
+    font-size: 12px;
+    height: 50px;
+    background: $background-color-dark;
+    color: color($colors, primary);
+  }
+  .cart {
+    z-index: 100;
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    background: $cart-bar-background-color;
+    width: 100%;
+    .icon-container {
+      position: absolute;
+      left: 10px;
+      bottom: 5px;
+      background: $cart-container-background-color;
+      border-radius: 50%;
+      height: $cart-container-size;
+      width: $cart-container-size;
+      border: 5px solid $cart-bar-background-color;
+      text-align: center;
+      ion-icon {
+        font-size: 40px;
+        color: $cart-bar-background-color;
+        position: relative;
+        top: 3px;
+        right: 1px;
+      }
+    }
+    .mainPart {
+      position: absolute;
+      left: 90px;
+      bottom: 0px;
+      height: 50px;
+      h5 {
+        text-align: left;
+        margin: 2px 0;
+        padding: 0 0;
+        color: $text-color-dark;
+      }
+    }
+    .end {
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+      color: $text-color-dark;
+      font-size: 12px;
+      padding: 15px 10px;
+      button {
+        position: absolute;
+        bottom: -4px;
+        right: 0;
+        background: color($colors, primary);
+        width: 80px;
+        height: 50px;
+        box-shadow: none;
+        border: none;
+        border-radius: none;
+      }
+    }
+  }
+  .categoryMenu {
+    z-index: 100;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}

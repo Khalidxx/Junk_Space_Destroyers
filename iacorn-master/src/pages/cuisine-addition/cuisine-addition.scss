@@ -1,0 +1,55 @@
+page-cuisine-addition {
+  ion-content.content {
+    top: 20%;
+    left: 10%;
+
+    width: 80%;
+    height: 350px;
+    border-radius: 10px;
+    .scroll-content {
+      border-radius: 20px;
+    }
+  }
+  .main {
+    #normal {
+      background: map-get($color-custom, gray2);
+    }
+    #selected {
+      color: $text-color-dark;
+    }
+    button {
+      border: none;
+      box-shadow: none;
+      color: $text-color;
+      font-weight: bold;
+    }
+  }
+
+  .addOrSub {
+    font-size: 15px;
+    .title {
+      font-size: 15px;
+    }
+    .remove-icon {
+      width: 30px;
+      color: map-get($color-custom, grey3);
+    }
+    .number {
+      width: 30px;
+    }
+    .add-icon {
+      color: color($colors, primary);
+    }
+  }
+
+  .bottom {
+    position: absolute;
+    bottom: 0px;
+    .cancelButton {
+      background: map-get($color-custom, gray2);
+    }
+    .confirmButton {
+      color: $text-color-dark;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+<ion-content [ngSwitch]="store.list.length==0">
+
+  <div class="title">购物车</div>
+  <div class="noItem" *ngSwitchCase="true">你的购物车内没有任何物品。</div>
+  <ion-list no-lines *ngSwitchCase="false" [virtualScroll]="store.list">
+    <ion-item *virtualItem="let cuisineCart; index as i" detail-none>
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col col-3>
+            <h2>{{cuisineCart.name}}</h2>
+            <ion-grid *ngIf="cuisineCart.additions" no-padding>
+              <ion-row>
+                <ion-col col-auto class="additions" *ngFor="let addition of cuisineCart.additions">
+                  <p>{{addition.choosedName}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+          <ion-col class="price" col-5>
+            RM{{(cuisineCart.price*cuisineCart.quantity).toFixed(2)}}
+          </ion-col>
+          <ion-col>
+            <ion-icon name="ios-remove-circle-outline" (click)="simplyDeleteOne(i)"></ion-icon>
+          </ion-col>
+          <ion-col>
+            {{cuisineCart.quantity}}
+          </ion-col>
+          <ion-col>
+            <ion-icon name="md-add-circle" (click)="simplyAddOne(i)"></ion-icon>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>
